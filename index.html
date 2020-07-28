@@ -50,10 +50,10 @@
                                         met</label>
                                 </div>
                             </div>
-                            <div class="row">
-                                <!-- <div class="col-12 form-group">
-                                    <label class="label bold">Rule</label>
-                                </div> -->
+                            <div class="row" v-for="(rules, r) of input" :key="r">
+                                <div class="col-12">
+                                    <label class="label bold form-group">Rule {{r+1}}</label>
+                                </div>
                                 <div class="col-12 col-md-2 form-group">
                                     <select class="form-control">
                                         <option>aff_sub</option>
@@ -73,10 +73,11 @@
                                     </div>
                                 </div>
                                 <div class="col-2 col-md-1 form-group text-center">
-                                    <button class="btn btn-primary"> + </button>
+                                    <button class="btn btn-primary" type="button" @click="addRules()"> + </button>
                                 </div>
                                 <div class="col-2 col-md-1 form-group text-center">
-                                    <button class="btn btn-danger"> - </button>
+                                    <button class="btn btn-danger" type="button" :disabled="r < 1"
+                                        @click="removeRules(r)"> - </button>
                                 </div>
                             </div>
                             <div class="row">
@@ -110,9 +111,24 @@
         var app = new Vue({
             el: '#app',
             data() {
-                return {}
+                return {
+                    input: [{
+                        rules: '',
+                        parameters: [{}]
+                    }]
+                }
             },
-            methods: {}
+            methods: {
+                addRules() {
+                    this.input.push({
+                        rules: '',
+                        parameters: [{}]
+                    })
+                },
+                removeRules(index) {
+                    this.input.splice(index, 1)
+                }
+            }
         })
         // Show Modal when Page Loading
         $(window).on('load', function () {
