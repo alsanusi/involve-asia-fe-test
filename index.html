@@ -33,21 +33,25 @@
                     <div class="container modal-body">
                         <form>
                             <div class="row">
-                                <div class="col-12 form-group">
-                                    <label>Revenue Group Title</label>
-                                    <input type="text" class="form-control" value="Fashion - 15%">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Revenue Group Title</label>
+                                        <input type="text" class="form-control" value="Fashion - 15%">
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 form-group flex">
-                                    <label class="label right">If</label>
-                                    <select class="form-control" style="width: 30%;">
-                                        <option>ALL</option>
-                                    </select>
-                                    <label class="label left">of the
-                                        below
-                                        conditions are
-                                        met</label>
+                                <div class="col-12">
+                                    <div class="form-group flex">
+                                        <label class="label right">If</label>
+                                        <select class="form-control" style="width: 30%;">
+                                            <option>ALL</option>
+                                        </select>
+                                        <label class="label left">of the
+                                            below
+                                            conditions are
+                                            met</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row" v-for="(rules, r) of input" :key="r">
@@ -55,38 +59,58 @@
                                     <label class="label bold form-group">Rule {{r+1}}</label>
                                 </div>
                                 <div class="col-12 col-md-2 form-group">
-                                    <select class="form-control">
-                                        <option>aff_sub</option>
-                                    </select>
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option>aff_sub</option>
+                                        </select>
+                                    </div>
+
                                 </div>
-                                <div class="col-12 col-md-2 form-group">
-                                    <select class="form-control">
-                                        <option>is</option>
-                                    </select>
+                                <div class="col-12 col-md-2">
+                                    <div class="form-group">
+                                        <select class="form-control">
+                                            <option>is</option>
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="col-12 col-md-6 input-group mb-3">
-                                    <input type="text" class="form-control" placeholder="Insert Parameter">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-secondary" type="button">
-                                            Add Rule
-                                        </button>
+                                <div class="col-12 col-md-6">
+                                    <div class="input-group mb-3" v-for="(parameter, p) of rules.parameters" :key="p">
+                                        <input type="text" class="form-control" placeholder="Insert Parameter">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="button" v-show="p < 1"
+                                                @click="addParameter(r)">
+                                                Add Rule
+                                            </button>
+                                        </div>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-secondary" type="button" v-show="p >= 1"
+                                                @click="deleteParameter(r, p)" id="button-addon2">
+                                                Remove Rule
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-2 col-md-1">
+                                    <div class="form-group text-center">
+                                        <button class="btn btn-primary" type="button" @click="addRules()"> + </button>
                                     </div>
                                 </div>
                                 <div class="col-2 col-md-1 form-group text-center">
-                                    <button class="btn btn-primary" type="button" @click="addRules()"> + </button>
-                                </div>
-                                <div class="col-2 col-md-1 form-group text-center">
-                                    <button class="btn btn-danger" type="button" :disabled="r < 1"
-                                        @click="removeRules(r)"> - </button>
+                                    <div class="form-group text-center">
+                                        <button class="btn btn-danger" type="button" :disabled="r < 1"
+                                            @click="removeRules(r)"> - </button>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-12 form-group flex">
-                                    <label class="label right">then revenue is</label>
-                                    <div class="input-group no-width">
-                                        <input type="text" class="form-control" value="15">
-                                        <div class="input-group-append">
-                                            <span class="input-group-text no-bg-color">%</span>
+                                <div class="col-12">
+                                    <div class="form-group flex">
+                                        <label class="label right">then revenue is</label>
+                                        <div class="input-group no-width">
+                                            <input type="text" class="form-control" value="15">
+                                            <div class="input-group-append">
+                                                <span class="input-group-text no-bg-color">%</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -127,12 +151,24 @@
                 },
                 removeRules(index) {
                     this.input.splice(index, 1)
+                },
+                addParameter(index) {
+                    this.input[index].parameters.push({
+                        param: ''
+                    })
+                },
+                deleteParameter(rulesIndex, paramaterIndex) {
+                    this.input[rulesIndex].parameters.splice(paramaterIndex, 1);
                 }
             }
         })
-        // Show Modal when Page Loading
+        // Show Modal when Page Loading and Disabled Closing
         $(window).on('load', function () {
-            $('#modalForm').modal('show');
+            $('#modalForm').modal({
+                show: true,
+                backdrop: 'static',
+                keyboard: false
+            });
         });
     </script>
 </body>
