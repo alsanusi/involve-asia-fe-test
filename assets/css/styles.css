@@ -1,0 +1,44 @@
+.modal-backdrop.in {
+    opacity: 50%;
+}
+
+.modal-header.no-border {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+    justify-content: flex-start;
+}
+
+.form-group.flex {
+    display: flex;
+}
+
+.label {
+    align-self: center;
+}
+
+.label.right {
+    margin-right: 1rem;
+}
+
+.label.left {
+    margin-left: 1rem;
+}
+
+.input-group-text.no-bg-color {
+    background-color: unset;
+}
+
+.input-group.no-width {
+    width: unset;
+}
+
+.modal-footer.no-border {
+    border-top: none;
+}
+
+.modal-footer.left-button {
+    align-self: start;
+}

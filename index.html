@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Involve Asia FE Test</title>
     <!-- CSS only -->
+    <link rel="stylesheet" href="./assets/css/styles.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
         integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!-- JS, Popper.js, and jQuery -->
@@ -22,7 +23,86 @@
 
 <body>
     <div id="app">
-
+        <div class="modal show" id="modalForm">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header no-border">
+                        <h5 class="modal-title">Add Revenue Group</h5>
+                    </div>
+                    <div class="container modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-12 form-group">
+                                    <label>Revenue Group Title</label>
+                                    <input type="text" class="form-control" id="revenueGroupTitle">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 form-group flex">
+                                    <label class="label right">If</label>
+                                    <select class="form-control" style="width: 30%;">
+                                        <option>ALL</option>
+                                    </select>
+                                    <label class="label left">of the
+                                        below
+                                        conditions are
+                                        met</label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-2 form-group">
+                                    <select class="form-control">
+                                        <option>aff_sub</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-2 form-group">
+                                    <select class="form-control">
+                                        <option>is</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 col-md-6 input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Insert Parameter">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="button">
+                                            Add Rule
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-2 col-md-1 form-group">
+                                    <button class="btn btn-outline-secondary" type="button">
+                                        +
+                                    </button>
+                                </div>
+                                <div class="col-2 col-md-1 form-group">
+                                    <button class="btn btn-outline-secondary" type="button">
+                                        -
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 form-group flex">
+                                    <label class="label right">then revenue is</label>
+                                    <div class="input-group no-width">
+                                        <input type="text" class="form-control">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text no-bg-color">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Modal Footer -->
+                    <div class="modal-footer no-border left-button">
+                        <button type="button" class="btn"
+                            style="background-color: orange; color: white;">Confirm</button>
+                        <button type="button" class="btn" style="background-color: grey; color: white;"
+                            data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <!-- Vue Js -->
